@@ -1,0 +1,4 @@
+- Ayuda con el deploy
+- Saber docker y docker compose
+- Metricas con prometeus y grafana
+- Setup de servicios en AWS usando Terraform: RabbitMQ (ActiveMQ), SQS, SNS, Lambda (SAM), S3, etc. 
