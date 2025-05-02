@@ -1,5 +1,5 @@
-import { middleware } from '#middlewares/middlewares.js';
 import express from 'express';
+import { middleware } from './middlewares/middlewares';
 
 const app = express();
 const port = '3000';

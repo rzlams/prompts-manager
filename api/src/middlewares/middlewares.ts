@@ -1,6 +1,5 @@
-import { RequestHandler } from 'express';
+import { Request, Response } from 'express';
 
-export const middleware: RequestHandler = (req, res) => {
-  res.send('Hello World!');
-  console.log('Response sent');
+export const middleware = (_req: Request, res: Response) => {
+  res.send('Hello from Prompts Manager API!');
 };
