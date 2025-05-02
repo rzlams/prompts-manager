@@ -1,0 +1,44 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# GOAL
+Write comprehensive, high-quality unit tests for the provided TypeScript code snippet, strictly adhering to the best practices outlined below.
+
+IMPORTANT: You should write one test at a time. Do not start writing the next test until the previous pass. Follow the red, green, refactor pattern when needed.
+
+# BEST PRACTICES
+- Focus on Single Unit of Work (Isolation): Each test or it block must verify only ONE specific behavior or outcome of a function/method.
+Do NOT test multiple distinct functionalities within a single test case.
+
+- Leverage TypeScript's Type System: Ensure all test data, mock functions, and mock return values strictly conform to the expected TypeScript types.
+Use jest.Mocked<T> or similar utilities for type-safe mocks where applicable.
+
+- Isolate Dependencies with Mocks: Identify external dependencies (imports from other modules, classes, APIs, etc.). Use jest.fn(), jest.mock() or similar utilities to create mocks/stubs for ALL external dependencies. Do NOT rely on the actual implementation of dependencies. Clearly differentiate between the unit under test and the mocked dependencies by adding the prefix `mock`, `stub` or `spy` to the corresponding test double variables.
+
+- Use Clear and Descriptive Test Names: Follow the pattern "it('should [expected outcome] when [condition]')" or "[methodName]_[condition]_[expectedBehavior]". Names must clearly articulate the specific scenario being tested.
+
+- Follow Arrange-Act-Assert (AAA) Pattern:
+    * Arrange: Set up preconditions. Initialize variables, create mocks, define mock implementations/return values, prepare input data. Use comments // Arrange, // Act, // Assert to structure the test body.
+    * Act: Execute the function or method under test with the arranged inputs/mocks.
+    * Assert: Use Jest's expect functions (expect(...)toBe(...), expect(...).toHaveBeenCalledWith(...), expect(...).toThrow(...), etc.) to verify the outcome, return value, mock interactions, or thrown errors.
+
+- Test Happy Paths and Edge Cases/Errors: Include tests for typical, valid inputs (happy path). Include tests for boundary conditions (e.g., empty arrays, zero values, max values). Include tests for invalid inputs (e.g., null, undefined, incorrect types where applicable). Include tests for expected error scenarios (e.g., using expect(...).toThrow(...)).
+
+- Keep Tests Simple and Fast: Avoid loops, complex logic, or calculations within the test itself. Tests should be straightforward.
+Ensure tests run quickly by maintaining proper isolation (no real I/O or network calls).
+
+- Ensure Determinism: Tests must produce the same result every time. Mock any reliance on Date.now(), Math.random(), or other non-deterministic functions if they influence the unit's behavior.
+
+- Leverage the Object Mother pattern: Create object mother clasess to simplify and centralize the creation of test objects, especially for complex or repetitive scenarios. ALL the domain entities must have its corresponding object mother. Follow these rules:
+    * The object mother class should have only one public method named "create" and this method should receive an object as override parameter. This is an example:
+    ```typescript
+    export class MyObjectMotherClass {
+        static create(overrides: Partial<Input> = {}): Output {
+            return { id, createdDate }
+        }
+    }
+    ```
+    * Avoid multidimension objects. Leverage composition to avoid the definition of nested objects
+    * Make sure to import all the neccesary interfaces and classes needed to create the object
