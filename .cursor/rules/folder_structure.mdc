@@ -1,0 +1,12 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+This project is a **Prompt Manager** designed to organize and manage LLM prompts and related development tasks using a file-based system. It heavily relies on Markdown files for defining prompts, tasks, and requirements.
+
+# Folder Structure
+
+-   **Root Directory**: Contains the main project folders and configuration files like `.gitignore`.
+    -   `prompts/`: Stores various `.md` files that define specific prompts, roles, and guidelines for interacting with an LLM.
+    -   `tasks/`: Contains project management documents in `.md` format.
