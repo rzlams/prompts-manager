@@ -1,12 +1,14 @@
 ---
-description: 
+description: Unit test methodology
 globs: 
 alwaysApply: false
 ---
 # GOAL
 Write comprehensive, high-quality unit tests for the provided TypeScript code snippet, strictly adhering to the best practices outlined below.
 
-IMPORTANT: You should write one test at a time. Do not start writing the next test until the previous pass. Follow the red, green, refactor pattern when needed.
+Let me kown explitcitly when you decide to use a TDD approach.
+
+NOTE: You should write one test at a time. Do not start writing the next test until the previous pass. Follow the red, green, refactor pattern when needed.
 
 # BEST PRACTICES
 - Focus on Single Unit of Work (Isolation): Each test or it block must verify only ONE specific behavior or outcome of a function/method.
@@ -42,3 +44,5 @@ Ensure tests run quickly by maintaining proper isolation (no real I/O or network
     ```
     * Avoid multidimension objects. Leverage composition to avoid the definition of nested objects
     * Make sure to import all the neccesary interfaces and classes needed to create the object
+
+IMPORTANT: Execute the tests each time you make a change to ensure you are not broking anything. Remember leverage the red, green, refactor pattern when needed.
