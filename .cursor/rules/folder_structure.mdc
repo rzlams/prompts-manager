@@ -3,10 +3,51 @@ description:
 globs: 
 alwaysApply: true
 ---
-This project is a **Prompt Manager** designed to organize and manage LLM prompts and related development tasks using a file-based system. It heavily relies on Markdown files for defining prompts, tasks, and requirements.
+This project is the **Prompts Manager**, a tool for organizing and managing LLM prompts using a file-based system. It consists of a separate backend API and a frontend application. The system relies on a `prompts/` directory for storing prompt markdown files and a `config.json` file for metadata and indexing.
 
 # Folder Structure
 
--   **Root Directory**: Contains the main project folders and configuration files like `.gitignore`.
-    -   `prompts/`: Stores various `.md` files that define specific prompts, roles, and guidelines for interacting with an LLM.
-    -   `tasks/`: Contains project management documents in `.md` format.
+-   **Root Directory**: Contains top-level configuration files (`package.json`, `yarn.lock`, `.gitignore`, `.eslintrc.js`, `.prettierrc`), the main project `README.md`, and the core data/application folders. Also includes `.cursor/` rules for AI assistance.
+-   `api/`: Contains the backend API server.
+    -   Built with Node.js and TypeScript, likely using Express (inferred from `index.ts` and `middlewares.ts`).
+    -   Responsible for serving API endpoints, filesystem interactions, and potentially managing synchronization logic.
+    -   **Key Files & Structure**:
+        -   `prompts/`: The designated root directory where user prompt data is stored as `.md` and `.mdc` files. Contains various prompts organized loosely, not strictly following the `prompt_name/prompt.md` structure outlined in the PRD yet.
+        -   `prompts/config.json`: This file acts as the index and metadata store.
+        -   `package.json`: Backend dependencies and scripts.
+        -   `tsconfig.json`: TypeScript configuration for the backend.
+        -   `eslint.config.js`, `.prettierrc`: Linting and formatting configuration.
+        -   `jest.config.js`: Jest testing framework configuration.
+        -   `src/`: Main source code directory.
+            -   `index.ts`: The main entry point, likely setting up and starting the Express server.
+            -   `config/index.ts`: Handles backend-specific configuration loading.
+            -   `middlewares/middlewares.ts`: Contains Express middleware definitions.
+            -   `utils/filesystem.ts`: Utility functions specifically for filesystem operations.
+            -   `utils/__tests__/filesystem.test.ts`: Unit tests for filesystem utilities.
+            -   `test/setup.ts`: Setup file for the test environment.
+-   `app/`: Contains the frontend application.
+    -   Built as a Single Page Application (SPA) using React, TypeScript, and Vite, styled with Tailwind CSS.
+    -   Responsible for the UI, user interactions, displaying prompts, making API calls, and managing the `config.json` and synchronization process.
+    -   **Key Files & Structure**:
+        -   `package.json`: Frontend dependencies and scripts.
+        -   `vite.config.ts`: Vite build tool configuration.
+        -   `tsconfig.json`, `tsconfig.app.json`, `tsconfig.node.json`: TypeScript configurations.
+        -   `tailwind.config.js`, `postcss.config.js`: Tailwind CSS and PostCSS configuration.
+        -   `eslint.config.js`: Linting configuration.
+        -   `index.html`: The main HTML entry point for the SPA.
+        -   `public/`: Static assets served directly (e.g., `vite.svg`).
+        -   `src/`: Main source code directory.
+            -   `main.tsx`: Application entry point rendering the root React component.
+            -   `App.tsx`: The root React component, likely setting up layout, routing (if any), and core logic.
+            -   `App.css`, `index.css`: CSS files, including Tailwind directives.
+            -   `assets/`: Frontend-specific static assets (e.g., `react.svg`).
+            -   `lib/`: Contains core application logic modules.
+                -   `config/manager.ts`: Manages reading, writing, and updating the `config.json`.
+                -   `config/schema.ts`: Defines the Zod schema for validating `config.json`.
+                -   `config/types.ts`: TypeScript types related to the configuration.
+                -   `config/__tests__/manager.test.ts`: Unit tests for the config manager.
+                -   `sync/sync-manager.ts`: Implements the data synchronization logic between the filesystem and `config.json`.
+                -   `sync/__tests__/sync-manager.test.ts`: Unit tests for the sync manager.variables.
+-   `tasks/`: Contains project management and documentation files.
+    -   `PRD.md`: The Product Requirements Document.
+    -   `TASK.md`: A markdown file tracking development tasks.

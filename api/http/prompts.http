@@ -1,0 +1,34 @@
+### Get all
+GET http://localhost:3000/api/prompts
+
+
+### Find by name
+@prompt_name = ux_designer
+GET http://localhost:3000/api/prompts/{{ prompt_name }}
+
+
+### Create
+POST http://localhost:3000/api/prompts
+content-type: application/json
+
+{
+  "name": "sample_prompt",
+  "description": "A sample prompt description.",
+  "tags": ["example", "test"],
+  "content": "Esto es un nuevo prompt"
+}
+
+
+### Update
+PUT http://localhost:3000/api/prompts/sample_prompt
+content-type: application/json
+
+{
+  "description": "22 A sample prompt description.",
+  "tags": ["example"],
+  "content": "Este es otro prompt"
+}
+
+
+### Delete
+DELETE http://localhost:3000/api/prompts/sample_prompt 

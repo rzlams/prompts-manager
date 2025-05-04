@@ -79,7 +79,7 @@
 
 ---
 
-## [ ] 5. Basic UI Layout and Navigation
+## [x] 5. Basic UI Layout and Navigation
 
 **Priority:** Medium
 **Status:** Pending

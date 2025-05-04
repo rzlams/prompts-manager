@@ -19,13 +19,32 @@ The primary goal is to provide a simple, intuitive interface for organizing prom
 
 - **Filesystem-Based:** Prompts and examples are stored directly on the user's filesystem within a designated root directory.
 - **Directory Structure:**
+
   - A main `prompts/` directory holds all prompt data.
   - Each prompt resides in its own subdirectory within `prompts/`, named using the prompt's unique name in `snake_case` format (e.g., `prompts/create_summary/`).
   - Inside each prompt's directory:
-    - `prompt.md`: A Markdown file containing the main text of the prompt.
+
+    - `prompt.md`: A Markdown file containing the main text of the prompt, with the following structure:
+
+      ```markdown
+      description: a prompt description
+      tags: tag1, tag2, tag3
+
+      ---
+
+      the content of the prompt
+      ```
+
+      - All lines before the first `---` are considered the file header (metadata).
+      - Each header line must be in the format `key: value` (case-insensitive key, e.g., `description`, `tags`).
+      - The content of the prompt is everything after the first `---`.
+      - The prompt name is the name of the folder containing the markdown file.
+
     - `example_N.md`: Markdown files containing individual usage examples, where `N` is a sequential integer (e.g., `example_1.md`, `example_2.md`).
+
   - Subdirectories _within_ a prompt's folder (e.g., `prompts/create_summary/images/`) are ignored by the application's scanning logic.
-- **Source of Truth:** The existence of folders and `.md` files within the `prompts/` directory structure is the definitive **source of truth** for which prompts and examples exist.
+
+- **Source of Truth:** The existence of folders and `.md` files within the `prompts/` directory structure, and the content/metadata of each markdown file, is the definitive **source of truth** for which prompts and examples exist.
 
 ### 2.2. Metadata Management (`config.json`)
 
@@ -35,7 +54,7 @@ The primary goal is to provide a simple, intuitive interface for organizing prom
   - A global list of defined tags.
   - Metadata for each prompt and example file found in the filesystem (description, assigned tags).
   - A top-level `updatedAt` timestamp (ISO 8601 format) indicating the last modification time of the `config.json` file.
-- **Derivation:** The `prompts` section of `config.json` is primarily derived and updated based on scanning the `prompts/` directory (see 2.6 Data Synchronization).
+- **Derivation:** The `prompts` section of `config.json` is derived and updated based on scanning the `prompts/` directory and parsing the header of each markdown file (see 2.6 Data Synchronization).
 
 ### 2.3. Tagging System
 
@@ -72,12 +91,13 @@ The primary goal is to provide a simple, intuitive interface for organizing prom
 - **Trigger:** Synchronization occurs automatically on application startup and can be triggered manually via a "Sync" button in the UI.
 - **Process:**
   1.  Scan the `prompts/` directory structure to identify all prompt folders and their contained `prompt.md` and `example_N.md` files.
-  2.  Compare the discovered file structure against the `prompts` object in `config.json`.
-  3.  **Additions:** If a prompt folder or example file exists on the filesystem but not in `config.json`, add a default entry for it in the `prompts` object (e.g., with empty description and tags).
-  4.  **Deletions:** If an entry exists in the `config.json` `prompts` object but its corresponding folder/file is missing from the filesystem, remove the entry from the JSON.
-  5.  **Tag Consistency:** Scan the `tags` arrays within the updated `prompts` object. Any tags found here that are not present in the global `tags` array should be added to the global `tags` array.
-  6.  Update the `updatedAt` timestamp in `config.json`.
-- **Goal:** Ensure `config.json` accurately reflects the file structure reality and maintains consistent metadata.
+  2.  For each markdown file, parse the header (metadata) and content as described in 2.1.
+  3.  Compare the discovered file structure and parsed metadata against the `prompts` object in `config.json`.
+  4.  **Additions:** If a prompt folder or example file exists on the filesystem but not in `config.json`, add a default entry for it in the `prompts` object (using the parsed metadata and content).
+  5.  **Deletions:** If an entry exists in the `config.json` `prompts` object but its corresponding folder/file is missing from the filesystem, remove the entry from the JSON.
+  6.  **Tag Consistency:** Scan the `tags` arrays within the updated `prompts` object. Any tags found here that are not present in the global `tags` array should be added to the global `tags` array.
+  7.  Update the `updatedAt` timestamp in `config.json`.
+- **Goal:** Ensure `config.json` accurately reflects the file structure reality and maintains consistent metadata, but the filesystem and markdown file content remain the source of truth.
 
 ### 2.7. User Interface
 

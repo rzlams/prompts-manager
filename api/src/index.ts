@@ -1,11 +1,14 @@
 import express from 'express';
-import { middleware } from './middlewares/middlewares';
+import errorHandler from './middlewares/error-handler';
+import promptsRouter from './routes/prompts';
 
 const app = express();
 const port = '3000';
 
-app.get('/', middleware);
+app.use(express.json());
+app.use('/api/prompts', promptsRouter);
+app.use(errorHandler);
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+  console.log(`Prompts Manager API listening on port ${port}`);
 });

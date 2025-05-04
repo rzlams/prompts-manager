@@ -1,4 +1,9 @@
-I need to describe the structure of this project to an LLM. Please, understand the folder structure of this project and document it. Read files you consider relevant to add more context. Output only the rules in markdown format. Here is an example of the desired output that describes other project's strucutre:
+description: To be used with gemini code assitant due to its large context. It ask the LLM to describe the folder structure and file contents.
+tags: develop
+
+---
+
+I need to describe the structure of this project to an LLM. Please, understand the folder structure of this project and document it. Read files you consider relevant to add more context. Output only the rules in markdown format. Here is an example of the desired output that describes other project's structure:
 
 ```markdown
 This project is a backoffice implemented with Angular 17. It is tructured using Angular modules and components. It utilizes SCSS for styling and has distinct configurations for different environments (dev, pre, pro, local).
@@ -33,7 +38,13 @@ This project is a backoffice implemented with Angular 17. It is tructured using 
         - `models/`: Feature-specific data models.
         - `modals/`: Components used as modals within the feature.
     - `not-found/`: Component displayed for invalid routes.
-  - `styles/`: Contains partial SCSS files for more organized styling (_colors.scss, _modals.scss, etc.).
+  - `styles/`: Contains partial SCSS files for more organized styling (\_colors.scss, \_modals.scss, etc.).
 ```
 
-IMPORTANT: The output should be clear and concise because it will be provided to an LLM on start a new task.
+IMPORTANT: The output should be clear and concise markdown formatted text, because it will be provided to an LLM on start a new task.
+
+You are in the actual code repository, you do not need to make up anything. Please read the content of the relevant files/folders in the project and give a factual response. Here is the output of the command `git ls-tree HEAD -r --name-only`
+
+```bash
+
+```
