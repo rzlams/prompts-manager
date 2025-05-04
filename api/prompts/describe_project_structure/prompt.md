@@ -41,10 +41,11 @@ This project is a backoffice implemented with Angular 17. It is tructured using 
   - `styles/`: Contains partial SCSS files for more organized styling (\_colors.scss, \_modals.scss, etc.).
 ```
 
-IMPORTANT: The output should be clear and concise markdown formatted text, because it will be provided to an LLM on start a new task.
+**IMPORTANT**: The output should be clear and concise markdown formatted text, because it will be provided to an LLM on start a new task.
 
 You are in the actual code repository, you do not need to make up anything. Please read the content of the relevant files/folders in the project and give a factual response. Here is the output of the command `git ls-tree HEAD -r --name-only`
 
 ```bash
+{{ }}
 
 ```

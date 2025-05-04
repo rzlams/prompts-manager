@@ -1,11 +1,17 @@
 import { MenuIcon } from '../icons/menu-icon';
 import { PlusIcon } from '../icons/plus-icon';
+import PromptList from '../prompt-list/prompt-list';
+
+interface SidebarProps {
+  selectedPrompt: string | null;
+  onSelect: (name: string) => void;
+}
 
 /**
  * Sidebar component for the Prompt Manager UI.
  * Includes menu, navigation links, and a static prompt list.
  */
-export default function Sidebar() {
+export default function Sidebar({ selectedPrompt, onSelect }: SidebarProps) {
   return (
     <aside className="w-64 min-w-[16rem] bg-neutral-100 border-r border-neutral-200 flex flex-col h-full hidden md:flex">
       <div className="flex items-center h-16 px-4 border-b border-neutral-200">
@@ -29,35 +35,8 @@ export default function Sidebar() {
             </button>
           </li>
         </ul>
-        <div className="mt-6 text-xs text-neutral-500 uppercase px-3">Recent</div>
-        <ul className="mt-2 space-y-1">
-          <li>
-            <button className="flex items-center w-full px-3 py-2 rounded hover:bg-neutral-200 text-neutral-700">
-              Prompt Manager PRD Clarification
-            </button>
-          </li>
-          <li>
-            <button className="flex items-center w-full px-3 py-2 rounded hover:bg-neutral-200 text-neutral-700">
-              Prompt Improvement for Task
-            </button>
-          </li>
-          <li>
-            <button className="flex items-center w-full px-3 py-2 rounded hover:bg-neutral-200 text-neutral-700">
-              Bitbucket SSH Key Verification
-            </button>
-          </li>
-          <li>
-            <button className="flex items-center w-full px-3 py-2 rounded hover:bg-neutral-200 text-neutral-700">
-              Improve AI Prompt for Code
-            </button>
-          </li>
-          <li>
-            <button className="flex items-center w-full px-3 py-2 rounded hover:bg-neutral-200 text-neutral-700">
-              TypeScript Unit Testing Best Practices
-            </button>
-          </li>
-        </ul>
-        <button className="mt-2 ml-3 text-sm text-primary-500 hover:underline">Show more</button>
+        <div className="mt-6 text-xs text-neutral-500 uppercase px-3">Prompts</div>
+        <PromptList selectedPrompt={selectedPrompt} onSelect={onSelect} />
       </nav>
       <div className="px-4 py-3 border-t border-neutral-200 text-xs text-neutral-500">
         <div>Activity</div>

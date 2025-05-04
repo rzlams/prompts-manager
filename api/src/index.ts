@@ -1,10 +1,11 @@
+import cors from 'cors';
 import express from 'express';
 import errorHandler from './middlewares/error-handler';
 import promptsRouter from './routes/prompts';
-
 const app = express();
 const port = '3000';
 
+app.use(cors());
 app.use(express.json());
 app.use('/api/prompts', promptsRouter);
 app.use(errorHandler);

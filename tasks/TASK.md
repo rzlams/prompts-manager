@@ -49,11 +49,11 @@
 
 **Details:**
 
-- Create utilities to read and parse the config.json file
-- Implement validation for the config.json structure
-- Develop functions to update specific sections of the config (tags, prompts, updatedAt)
-- Add error handling for JSON parsing and writing
-- Implement backup/recovery mechanism for config.json
+- Create utilities to read and parse the config.json file ✓
+- Implement validation for the config.json structure ✓
+- Develop functions to update specific sections of the config (tags, prompts, updatedAt) ✓
+- Add error handling for JSON parsing and writing ✓
+- Implement backup/recovery mechanism for config.json ✓
 
 **Test Strategy:** Test reading, parsing, validation, and writing of config.json with various inputs, including edge cases and malformed data.
 
@@ -68,12 +68,12 @@
 
 **Details:**
 
-- Develop the core synchronization algorithm as described in Section 2.6
-- Implement logic to identify differences between filesystem and config.json
-- Create functionality to add missing entries to config.json from filesystem
-- Implement removal of stale entries from config.json (when files are deleted)
-- Add tag consistency checks to ensure the global tags list is up-to-date
-- Implement updating of the `updatedAt` timestamp
+- Develop the core synchronization algorithm as described in Section 2.6 ✓
+- Implement logic to identify differences between filesystem and config.json ✓
+- Create functionality to add missing entries to config.json from filesystem ✓
+- Implement removal of stale entries from config.json (when files are deleted) ✓
+- Add tag consistency checks to ensure the global tags list is up-to-date ✓
+- Implement updating of the `updatedAt` timestamp ✓
 
 **Test Strategy:** Test synchronization with various scenarios including added files, deleted files, and modified files. Verify that config.json accurately reflects the filesystem structure after synchronization.
 
@@ -82,24 +82,24 @@
 ## [x] 5. Basic UI Layout and Navigation
 
 **Priority:** Medium
-**Status:** Pending
+**Status:** Completed
 **Dependencies:** 1
 **Description:** Develop the foundational UI layout and navigation components.
 
 **Details:**
 
-- Implement the two-column layout (sidebar and main content area)
-- Create the header component with search bar, buttons placeholders
-- Develop the prompt list component for the sidebar
-- Implement sidebar navigation functionality
-- Create the content area for displaying prompt content
-- Add the non-functional chat input box placeholder
+- Implement the two-column layout (sidebar and main content area) ✓
+- Create the header component with search bar, buttons placeholders ✓
+- Develop the prompt list component for the sidebar ✓
+- Implement sidebar navigation functionality ✓
+- Create the content area for displaying prompt content ✓
+- Add the non-functional chat input box placeholder ✓
 
 **Test Strategy:** Test UI rendering, responsiveness, and navigation between different components.
 
 ---
 
-## [ ] 6. Prompt List and Display
+## [x] 6. Prompt List and Display
 
 **Priority:** Medium
 **Status:** Pending
@@ -108,12 +108,11 @@
 
 **Details:**
 
-- Develop the prompt list component with data from config.json
-- Implement selection of prompts from the list
-- Create the prompt content display component using Markdown rendering
-- Implement loading and display of prompt.md content
-- Add "Edit" button functionality to list items
-- Ensure proper UI updates when prompts are selected
+- Develop the prompt list component with data from config.json ✓
+- Implement selection of prompts from the list ✓
+- Create the prompt content display component using Markdown rendering ✓
+- Implement loading and display of prompt.md content ✓
+- Ensure proper UI updates when prompts are selected ✓
 
 **Test Strategy:** Test prompt list rendering, selection, and content display with various prompts and content formats.
 
@@ -128,7 +127,7 @@
 
 **Details:**
 
-- Develop the "Manage Tags" modal component
+- Develop the "Manage Tags" drawer component
 - Implement tag creation with validation (snake_case format)
 - Create tag deletion functionality with confirmation
 - Implement tag assignment interface components
@@ -158,42 +157,42 @@
 
 ---
 
-## [ ] 9. Create/Edit Prompt Modal
+## [ ] 9. Create/Edit Prompt Drawer
 
 **Priority:** High
 **Status:** Pending
 **Dependencies:** 2, 3, 7
-**Description:** Implement the modal for creating and editing prompts.
+**Description:** Implement the drawer for creating and editing prompts.
 
 **Details:**
 
-- Develop the modal component with form fields
+- Develop the drawer component with form fields
 - Implement validation for prompt name (snake_case)
 - Create functionality to save prompt data to filesystem and config.json
 - Implement form reset and validation feedback
 - Add error handling for save operations
 
-**Test Strategy:** Test modal creation, validation, and save operations with various inputs. Verify proper creation of files and updates to config.json.
+**Test Strategy:** Test drawer creation, validation, and save operations with various inputs. Verify proper creation of files and updates to config.json.
 
 ---
 
-## [ ] 10. Example Management in Create/Edit Modal
+## [ ] 10. Example Management in Create/Edit Drawer
 
 **Priority:** High
 **Status:** Pending
 **Dependencies:** 9
-**Description:** Extend the Create/Edit Prompt modal to handle examples.
+**Description:** Extend the Create/Edit Prompt drawer to handle examples.
 
 **Details:**
 
-- Add section for examples in the modal
+- Add section for examples in the drawer
 - Implement "Add Example" functionality
 - Create form fields for example description, content, and tags
 - Develop automatic naming of example files (example_N.md)
 - Implement save functionality for examples to filesystem and config.json
 - Add validation and error handling
 
-**Test Strategy:** Test example creation, editing, and deletion within the modal. Verify proper file creation and config.json updates.
+**Test Strategy:** Test example creation, editing, and deletion within the drawer. Verify proper file creation and config.json updates.
 
 ---
 
